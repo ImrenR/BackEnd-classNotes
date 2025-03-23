@@ -10,5 +10,7 @@
 //! In Node we dont have window obkect, instead we have "global"
 
 
-console.log(module);
+// console.log(module);
+
+require ('./logger') // to load a module we use require function
 
