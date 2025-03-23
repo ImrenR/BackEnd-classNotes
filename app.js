@@ -12,6 +12,6 @@
 
 // console.log(module);
 
-const logger = require ('./logger'); // to load a module we use require function.. 
+const logger = require('./logger'); // to load a module we use require function.. 
 //..this function takes one argument
-logger.log('message');
+logger('message');
