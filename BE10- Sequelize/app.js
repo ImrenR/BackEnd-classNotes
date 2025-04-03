@@ -15,6 +15,10 @@ app.all ('/', (req, res) => {
 );
 /*------------------------*/
 // Models :  
+// Sequelize:
+  const { Sequelize, DataTypes } = require('sequelize');
+  // sequelize instance :
+  const sequelize = new Sequelize ('sqlite:./db.sqlite3')
 /*------------------------*/
 
 const errorHandler = (err, req, res, next) => {
