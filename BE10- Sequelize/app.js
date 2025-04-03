@@ -46,10 +46,16 @@ app.all ('/', (req, res) => {
       allowNull : false,
       defaultValue : 0,
     },
-
+    isDone:{
+      type : DataTypes.BOOLEAN,
+      allowNull : false,
+      defaultValue : false,
+    }
+    // No need to define createdAt and updatedAt fields, sequelize will create them automatically
   })
 
-
+  // Sync the model with the database
+  sequelize.sync()
 /*------------------------*/
 
 const errorHandler = (err, req, res, next) => {
