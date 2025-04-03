@@ -46,7 +46,7 @@ app.all ('/', (req, res) => {
       allowNull : false,
       defaultValue : 0,
     },
-    isDone:{
+    isDoneCustom:{
       type : DataTypes.BOOLEAN,
       allowNull : false,
       defaultValue : false,
@@ -55,7 +55,7 @@ app.all ('/', (req, res) => {
   })
 
   // Sync the model with the database
-  sequelize.sync()
+  sequelize.sync({force: true})
 /*------------------------*/
 
 const errorHandler = (err, req, res, next) => {
