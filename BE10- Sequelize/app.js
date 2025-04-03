@@ -1,4 +1,7 @@
-
+"use strict";
+/*-------------------------------------------------------------------
+            EXPRESS - TODO PROJECT WITH SEQUELIZE
+---------------------------------------------------------------------*/
 const express= require('express');
 const app= express();
 
