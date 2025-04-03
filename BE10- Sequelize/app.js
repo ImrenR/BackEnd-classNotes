@@ -20,7 +20,7 @@ app.all ('/', (req, res) => {
   // sequelize instance :
   const sequelize = new Sequelize ('sqlite:' + process.env.SQLITE)
 // define method aims to create model 
-  const Todo = sequelize.define ('todo', {
+  const Todo = sequelize.define ('todos', {
      // We dont need to define the id field, sequelize will create it automatically
     // id: {
     //   type: DataTypes.INTEGER,
@@ -55,7 +55,18 @@ app.all ('/', (req, res) => {
   })
 
   // Sync the model with the database
-  sequelize.sync({force: true})
+  // This needs to be done only once, when you create the model
+  // sequelize.sync({force: true})
+
+  // Connect to the database
+  sequelize.authenticate()
+  .then(() => console.log('Connected to the database'))
+  .catch(() => console.error('Unable to connect to the database:'));
+/*------------------------*/
+
+
+/*------------------------*/
+// CRUD Transactions:
 /*------------------------*/
 
 const errorHandler = (err, req, res, next) => {
