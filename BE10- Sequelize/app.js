@@ -34,9 +34,18 @@ app.all ('/', (req, res) => {
   
     // }
     title :{
-      type :
-    }
-
+      type : DataTypes.STRING(256),
+      allowNull : false,
+    },
+    description:{
+      type : DataTypes.STRING,
+    },
+    // -1: Low, 0: Normal, 1:High
+    priority:{
+      type : DataTypes.TINYINT,
+      allowNull : false,
+      defaultValue : 0,
+    },
 
   })
 
