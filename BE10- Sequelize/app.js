@@ -20,7 +20,25 @@ app.all ('/', (req, res) => {
   // sequelize instance :
   const sequelize = new Sequelize ('sqlite:' + process.env.SQLITE)
 // define method aims to create model 
-  const Todo = sequelize.define ('todo', {})
+  const Todo = sequelize.define ('todo', {
+     // We dont need to define the id field, sequelize will create it automatically
+    // id: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false, // default : true 
+    //   unique: true, // default : false 
+    //   comment: 'description',
+    //   primaryKey: true, // default : false
+    //   autoIncrement: true, // default : false
+    //   // field: 'id', // default : name of the attribute  
+    //   defaultValue: 'default', // default : null
+  
+    // }
+    title :{
+      type :
+    }
+
+
+  })
 
 
 /*------------------------*/
