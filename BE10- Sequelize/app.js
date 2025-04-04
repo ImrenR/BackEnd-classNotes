@@ -71,6 +71,19 @@ app.all ('/', (req, res) => {
 /*------------------------*/
 // ROUTERS:
 const router = express.Router();
+
+//LIST
+router.get('/todos', async(req,res) => {
+ 
+  // const result = await Todo.findAll(); // select * from todos
+  // const result = await Todo.findAll({attributes: ['title', 'description']}); // select title description from todos
+  // const result = await Todo.findAndCountAll();
+  // res.status(200).send({
+  //   error: false,
+  //   result
+  // })
+  })
+
 //* Create
 router.post('/todos', async(req,res) => {
 
@@ -79,16 +92,33 @@ router.post('/todos', async(req,res) => {
 //   description: 'desc-2',
 //   priority: 0,
 //   isDoneCustom: false,
+});
+
+// const result = await Todo.create(req.body);
+
+
+//   res.status(201).send({
+//    error: false,
+//    result:result
+//   })
 // });
 
-const result = await Todo.create(req.body);
+// Read
+router.get("/todos", async (req, res) => {
+     
+  // const result = await Todo.findOne({
+  //   where: {
+  //     id: req.params.id
+  //   }
+  // });
+  const result = await Todo.findByPk(req.params.id)
 
+  res.status(200).send({
+    error: false,
+    result
+  });
 
-  res.status(201).send({
-   error: false,
-   result:result
-  })
-});
+})
 
 app.use(router);
 /*------------------------*/
