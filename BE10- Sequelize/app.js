@@ -111,12 +111,26 @@ router.get("/todos", async (req, res) => {
   //     id: req.params.id
   //   }
   // });
-  const result = await Todo.findByPk(req.params.id)
+  // const result = await Todo.findByPk(req.params.id)
 
-  res.status(200).send({
-    error: false,
-    result
-  });
+  // res.status(200).send({
+  //   error: false,
+  //   result
+  // });
+
+})
+
+//UPDATE
+
+router.put('/todos/:id', async (req, res) => {
+
+const result= await Todo.update({...newData}, {...where});
+
+
+res.status(202).send({
+  error:false,
+  result
+})
 
 })
 
