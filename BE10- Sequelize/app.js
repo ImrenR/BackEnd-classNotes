@@ -68,8 +68,9 @@ app.all ('/', (req, res) => {
   sequelize.authenticate()
   .then(() => console.log('Connected to the database'))
   .catch(() => console.error('Unable to connect to the database:'));
-/*------------------------*/
-// ROUTERS:
+/*----------------------------------------------------------------*/
+                     //ROUTERS:
+/*----------------------------------------------------------------*/
 const router = express.Router();
 
 //LIST
@@ -77,14 +78,17 @@ router.get('/todos', async(req,res) => {
  
   // const result = await Todo.findAll(); // select * from todos
   // const result = await Todo.findAll({attributes: ['title', 'description']}); // select title description from todos
-  // const result = await Todo.findAndCountAll();
-  // res.status(200).send({
-  //   error: false,
-  //   result
-  // })
+  const result = await Todo.findAndCountAll();
+  res.status(200).send({
+    error: false,
+    result
   })
+  });
+//* CRUD OPERATIONS
+
 
 //* Create
+/*--------------------------------------------------------*/
 router.post('/todos', async(req,res) => {
 
 // const result = await Todo.create({
@@ -92,18 +96,20 @@ router.post('/todos', async(req,res) => {
 //   description: 'desc-2',
 //   priority: 0,
 //   isDoneCustom: false,
+
+
+const result = await Todo.create(req.body);
+
+
+  res.status(201).send({
+   error: false,
+   result:result
+  })
 });
 
-// const result = await Todo.create(req.body);
-
-
-//   res.status(201).send({
-//    error: false,
-//    result:result
-//   })
-// });
-
 // Read
+/*--------------------------------------------------------*/
+
 router.get("/todos", async (req, res) => {
      
   // const result = await Todo.findOne({
@@ -121,7 +127,7 @@ router.get("/todos", async (req, res) => {
 })
 
 //UPDATE
-
+/*--------------------------------------------------------*/
 router.put('/todos/:id', async (req, res) => {
 
 // const result= await Todo.update({...newData}, {...where});
@@ -142,7 +148,7 @@ res.status(202).send({
 
 
 //DELETE
-
+/*--------------------------------------------------------*/
 router.delete('/todos/:id', async (req, res) => {
 // await Todo.destroy({ where: { id: req.params.id } });
 // const result= await Todo.update({...newData}, {...where});
@@ -179,7 +185,7 @@ const errorHandler = (err, req, res, next) => {
     // code: err.code, // error code
   })}
 app.use(errorHandler);
-/*------------------------------------------*/
+/*--------------------------------------------------------------------*/
 // Server
 
   app.listen(PORT, () => { console.log(`Server is running on port ${PORT}`)});
