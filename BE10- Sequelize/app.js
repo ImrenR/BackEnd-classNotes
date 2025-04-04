@@ -124,16 +124,36 @@ router.get("/todos", async (req, res) => {
 
 router.put('/todos/:id', async (req, res) => {
 
-const result= await Todo.update({...newData}, {...where});
-
+// const result= await Todo.update({...newData}, {...where});
+const result = await Todo.update (req.body, {
+  where :{
+    id: req.params.id
+  }
+}); // returns array [number of affected rows, affectedRows]
+// if it s successful, it returns the number 1 , if not it returns 0
 
 res.status(202).send({
   error:false,
-  result
+  result,
+  new: await Todo.findByPk(req.params.id)
 })
 
+});
+
+
+//DELETE
+
+router.delete('/todos/:id', async (req, res) => {
+// await Todo.destroy({ where: { id: req.params.id } });
+// const result= await Todo.update({...newData}, {...where});
+ const result = await Todo.destroy ({where :{id:req.params.id}}); // returns array [number of affected rows, affectedRows]
+res.status(202).send({
+  error:false,
+  result,
+  new: await Todo.findByPk(req.params.id)
 })
 
+});
 app.use(router);
 /*------------------------*/
 // CRUD Transactions:
