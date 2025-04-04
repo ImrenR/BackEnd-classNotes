@@ -8,6 +8,8 @@ const app= express();
 require("dotenv").config();
 const PORT = process.env?.PORT || 8000;
 
+require('express-async-errors'); // for async error handling
+
 /*------------------------*/
 // Accept json data
 /*------------------------*/
@@ -60,17 +62,45 @@ app.all ('/', (req, res) => {
 
   // Sync the model with the database
   // This needs to be done only once, when you create the model
-  // sequelize.sync({force: true})
+  // sequelize.sync()
 
   // Connect to the database
   sequelize.authenticate()
   .then(() => console.log('Connected to the database'))
   .catch(() => console.error('Unable to connect to the database:'));
 /*------------------------*/
+// ROUTERS:
+const router = express.Router();
+//* Create
+router.post('/todos', async(req,res) => {
+
+// const result = await Todo.create({
+//   title: 'todo-2',
+//   description: 'desc-2',
+//   priority: 0,
+//   isDoneCustom: false,
+// });
+
+const result = await Todo.create(req.body);
 
 
+  res.status(201).send({
+   error: false,
+   result:result
+  })
+});
+
+app.use(router);
 /*------------------------*/
 // CRUD Transactions:
+
+
+
+
+
+
+
+
 /*------------------------*/
 
 const errorHandler = (err, req, res, next) => {
@@ -83,3 +113,6 @@ const errorHandler = (err, req, res, next) => {
     // status: err.status, // error status
     // code: err.code, // error code
   })}
+
+
+  app.listen(PORT, () => { console.log(`Server is running on port ${PORT}`)});
