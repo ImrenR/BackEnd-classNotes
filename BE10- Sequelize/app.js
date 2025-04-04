@@ -147,26 +147,27 @@ router.delete('/todos/:id', async (req, res) => {
 // await Todo.destroy({ where: { id: req.params.id } });
 // const result= await Todo.update({...newData}, {...where});
  const result = await Todo.destroy ({where :{id:req.params.id}}); // returns array [number of affected rows, affectedRows]
-res.status(202).send({
-  error:false,
-  result,
-  new: await Todo.findByPk(req.params.id)
-})
 
+//  res.status(204).send({
+//   error:false,
+//   result,
+//   new: await Todo.findByPk(req.params.id)
+// })
+
+
+if (result){
+  res.sendStatus(204);
+} else {
+  // res.status(404).send({
+  //   error: true,
+  //   message: 'Todo not found'
+  // });
+  res.errorStatusCode = 404;
+  throw new Error('Todo not found');
+}
 });
 app.use(router);
-/*------------------------*/
-// CRUD Transactions:
-
-
-
-
-
-
-
-
-/*------------------------*/
-
+/*------------------------------------------*/
 const errorHandler = (err, req, res, next) => {
   const errorStatusCode =res.errorStatusCode ?? 500;
   res.status (errorStatusCode).send ({
@@ -177,6 +178,8 @@ const errorHandler = (err, req, res, next) => {
     // status: err.status, // error status
     // code: err.code, // error code
   })}
-
+app.use(errorHandler);
+/*------------------------------------------*/
+// Server
 
   app.listen(PORT, () => { console.log(`Server is running on port ${PORT}`)});
