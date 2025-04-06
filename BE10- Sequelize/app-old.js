@@ -22,9 +22,10 @@ app.all ('/', (req, res) => {
 
 app.use(require('./router/todo.router'));
 /*------------------------------------------*/
+// Error handling
+/*------------------------------------------*/
+app.use(require('./middlewares/errorHandler'));
 
-app.use(errorHandler);
-/*--------------------------------------------------------------------*/
 // Server
 
   app.listen(PORT, () => { console.log(`Server is running on port ${PORT}`)});
