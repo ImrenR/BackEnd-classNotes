@@ -5,17 +5,7 @@ const router = require("express").Router();
 const Todo = require('../models/todo.model.js');
 
 //LIST
-router.get('/todos', async(req,res) => {
-
-  // const result = await Todo.findAll(); // select * from todos
-  // const result = await Todo.findAll({attributes: ['title', 'description']}); // select title description from todos
-  const result = await Todo.findAndCountAll();
- 
-  res.status(200).send({
-    error: false,
-    result
-  })
-  });
+router.get('/todos');
 
 
 //* CRUD OPERATIONS
