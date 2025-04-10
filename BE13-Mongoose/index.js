@@ -16,10 +16,12 @@ dbConnection();
 //or
 // require('./src/dbConnection');
 
-// Routes
+//Main Routes
 app.all("/", (req,res)=>{
   res.send("Welcome to the home page");
 })
+//Blog Route
+app.use(require('./src/routes/blog.router'));
 
 // Error Handler:
 app.use (require("./src/middlewares/errorHandler"));
