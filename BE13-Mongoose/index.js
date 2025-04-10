@@ -13,10 +13,15 @@ app.use(express.json());
  // DB Connection
 const dbConnection = require("./src/dbConnection");
 dbConnection();
+//or
+// require('./src/dbConnection');
+
 // Routes
 app.all("/", (req,res)=>{
   res.send("Welcome to the home page");
 })
+
+// Error Handler:
 app.use (require("./src/middlewares/errorHandler"));
 // app.use(require("./src/dbConnection"));
 /*---------------------------------------*/
