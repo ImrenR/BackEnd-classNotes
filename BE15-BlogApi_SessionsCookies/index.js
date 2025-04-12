@@ -22,7 +22,8 @@ app.use(session({
   secret: process.env.PASS_SALT,
   // maxAge: 1000 * 60 * 60 * 24 * 3// 3 days in milliseconds// now this is a cookie
 }));
-
+// User Control (check user data from session)
+app.use(require('./src/middlewares/userControl'))
 
 /*---------------------------------------*/
 //Main Routes
