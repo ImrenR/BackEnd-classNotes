@@ -82,11 +82,12 @@ module.exports = {
       throw new Error("Wrong email or password");
     }
   },
+  
   logout: async (req,res)=> {
     req.session= null,
     res.status(200).send({
       error: false,
-      message
+      message: "Logout successful"
     })
   }
 }
