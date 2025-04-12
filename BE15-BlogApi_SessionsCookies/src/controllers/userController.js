@@ -40,8 +40,20 @@ delete : async (req,res)=>{
   const result = await User.deleteOne({_id:req.params.id});
   res.status(200).send({
     error: false, 
-    result
-  });
+    result});
 },
+login: async (req,res)=>{
+  // const email = req.body.email;
+  // const password = req.body.password;
+  const {email,password} = req.body;
+  if(email && password) {
+    res.status(200).send({
+      error: false, 
+      message:'OK'
+    });
+  }else {
+    throw new Error ('Email and password are required');
+  }
+}
 
 }
