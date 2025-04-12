@@ -33,7 +33,8 @@ const UserSchema = new mongoose.Schema({  // name of the schema is UserSchema
         // } // hide password
 
       //* Using cyrpto module in set method
-      set:(pass)=>{return passwordEncrypte(pass) }
+      // set:(pass)=>{return passwordEncrypte(pass) }
+      set: passwordEncrypte // encrypt password
       },
       firstName :String,
       lastName: String,
