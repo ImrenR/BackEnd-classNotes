@@ -4,7 +4,7 @@
 const {BlogCategory, BlogPost} = require("../models/blog.model") // import BlogCategory and BlogPost from blog.model
 
 //BlogCategory Controller
-module.exports.blogCategory = {
+module.exports.BlogCategory = {
 
   list: async(req,res)=>{
    
@@ -74,11 +74,11 @@ delete: async (req,res)=>{
 },
 }
 // BlogPost Controller
-module.exports.blogPost = {
+module.exports.BlogPost = {
 
   list: async(req,res)=>{
    
-    const result = await BlogPost.find();
+    const result = await BlogPost.find().populate('categoryId'); // populate categoryId with name field from BlogCategory
    
     res.status(200).send({  
       error:false,
