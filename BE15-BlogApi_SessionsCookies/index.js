@@ -18,13 +18,20 @@ dbConnection();
 // SessionCookie
 const session = require('cookie-session');
 
-app.use(session());
+app.use(session({
+  secret: process.env.PASS_SALT,
+  // maxAge: 1000 * 60 * 60 * 24 * 3// 3 days in milliseconds// now this is a cookie
+}));
 
 
 /*---------------------------------------*/
 //Main Routes
 app.all("/", (req,res)=>{
-  res.send("Welcome to the home page");
+  res.send({
+   message: "Welcome to the home page",
+   session: req.session,
+  });
+
 });
 
 //Blog Route

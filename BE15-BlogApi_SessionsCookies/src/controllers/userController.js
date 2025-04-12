@@ -48,6 +48,15 @@ module.exports = {
       if (user) {
 
         if (user.password === passwordEncrypte(password)) {
+          // Session
+          // req.session ={
+          //   email:user.email,
+          //   id:user._id,
+          // };
+           req.session._id= user._id;
+          req.session.email = user.email;
+
+          
           res.status(200).send({
             error: false,
             message: "Login successful",
