@@ -8,7 +8,7 @@
 // The response object is sent back to the client with the error message and status code.
 module.exports= (err,req,res,next)=>{
   console.log("Error handler middleware");
-  const customErorCode=res?.customErorCode || 500;
+  const customErrorCode=res?.customErorCode || 500;
   res.status(customErrorCode).send({
     error:true,
     message:err.message || "Something went wrong",
