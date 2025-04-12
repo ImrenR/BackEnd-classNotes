@@ -9,6 +9,7 @@ router.route('/blogs')
 
 router.route('/blogs/:Id')
 .get(BlogCategory.read)
+.put(BlogCategory.update)
 
 module.exports = router;
  

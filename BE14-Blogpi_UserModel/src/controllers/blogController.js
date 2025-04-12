@@ -36,12 +36,21 @@ module.exports = {
   },
 
 update: async(req,res)=>{
-   
-  const result = await BlogCategory
+   //acknowledged: true, // if update is successful
+  //modifiedCount: 1, // number of documents modified
+  //upsertedId: null, // id of the inserted document
+  //upsertedCount: 0, // number of documents inserted
+  //matchedCount: 1 // number of documents matched
+  
+  
+  // const result = await BlogCategory.updateOne({_id:req.params.id}, req.body)
+  const result = await BlogCategory.findOneAndUpdate({_id:req.params.id}, req.body, {new:true})
+
  
   res.status(200).send({
     error:false,
-    result
+    result,
+    new: await BlogCategory.findById(req.params.id)
   });
 },
 
