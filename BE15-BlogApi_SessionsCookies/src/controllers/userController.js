@@ -53,10 +53,17 @@ module.exports = {
           //   email:user.email,
           //   id:user._id,
           // };
-           req.session._id= user._id;
+          req.session._id= user._id;
           req.session.email = user.email;
+          /* Session */
 
-          
+          /* Cookie */
+          if(req.body?.rememberMe == true){
+            req.session.rememberMe = true,
+            req.sessionOptions.maxAge = 1000 * 60 * 60 * 24 * 3
+          }
+
+
           res.status(200).send({
             error: false,
             message: "Login successful",
@@ -75,4 +82,11 @@ module.exports = {
       throw new Error("Wrong email or password");
     }
   },
-};
+  logout: async (req,res)=> {
+    req.session= null,
+    res.status(200).send({
+      error: false,
+      message
+    })
+  }
+}
