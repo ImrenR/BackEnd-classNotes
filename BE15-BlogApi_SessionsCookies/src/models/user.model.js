@@ -1,20 +1,7 @@
 "use strict";
  
 const mongoose = require('mongoose');
- 
-// Password Encryption:
-const crypto = require('node:crypto'); // import crypto module
-const passwordEncrypte = (password)=> {
-  
-
-     const salt='sdlkjewriuodsg349857skjhf9a8w7sd';
-     const iteration= 100000;
-     const heylen= 32;
-    const digest= 'sha512';
-
-
-  return crypto.pbkdf2Sync(password,salt,iteration,heylen,digest).toString('hex');
-}
+const passwordEncrypte  = require('../utils/passwordEncrypte'); // import encrypt function
 
 const UserSchema = new mongoose.Schema({  // name of the schema is UserSchema
       email:{
