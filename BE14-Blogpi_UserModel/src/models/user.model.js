@@ -12,6 +12,9 @@ const UserSchema = new mongoose.Schema({  // name of the schema is UserSchema
         type: String,
         required: true,
         trim: true, // remove spaces from start and end
+        set:()=>{ 
+          
+        } // hide password
       },
       firstName :String,
       lastName: String,
