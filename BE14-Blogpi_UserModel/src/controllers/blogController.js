@@ -54,18 +54,21 @@ update: async(req,res)=>{
   });
 },
 
-delete: async(req,res)=>{
+delete: async (req,res)=>{
    
   const result = await BlogCategory.deleteOne({_id:req.params.id});
   // const result = await BlogCategory.findByIdAndDelete(req.params.id)
   // const result = await BlogCategory.findByIdAndRemove(req.params.id)
  
+  if(result.deletedCount === 1){
+    res.status(204);
+  }else {
+     res.errorStatuscode =404;
+     throw new Error ('Blog not found');
+  }
   res.status(200).send({
     error:false,
     result
   });
 },
-
-
-
 }

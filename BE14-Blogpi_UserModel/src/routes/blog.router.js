@@ -7,7 +7,7 @@ router.route('/blogs')
 .get(BlogCategory.list)
 .post(BlogCategory.create);
 
-router.route('/blogs/:Id')
+router.route('/blogs/:id')
 .get(BlogCategory.read)
 .put(BlogCategory.update)
 .delete(BlogCategory.delete);
