@@ -24,6 +24,8 @@ app.all("/", (req,res)=>{
 //Blog Route
 app.use(require('./src/routes/blog.router'));
 app.use(require('./src/routes/user.router'));
+app.use('/users', require('./src/routes/user.router'));
+
 // Error Handler:
 app.use (require("./src/middlewares/errorHandler"));
 // app.use(require("./src/dbConnection"));
