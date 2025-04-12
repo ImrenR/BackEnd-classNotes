@@ -4,6 +4,7 @@ const {mongoose} = require ('mongoose');
 
 const blogCategorySchema = new mongoose.Schema({
     // _id: // auto generated
+
     name:{
       type: String,
       trim: true, // remove spaces from start and end
@@ -12,15 +13,15 @@ const blogCategorySchema = new mongoose.Schema({
 },{
     collection:'blogCategories',  // Table Name
     
-   })
+   });
 
     const BlogCategory= mongoose.model ('BlogCategory', blogCategorySchema);
 
-    /*------------------------------------*/
-    // BlogPost Schema 
-    /*------------------------------------*/
- const blogPostSchema = new mongoose.Schema ({
-  categoryId:{ // DEFAULT RELATION : MANYTOONE
+/*------------------------------------*/
+// BlogPost Schema 
+/*------------------------------------*/
+    const blogPostSchema = new mongoose.Schema ({
+    categoryId:{ // DEFAULT RELATION : manyToOne
          type:mongoose.Schema.Types.ObjectId,
           ref:'BlogCategory', // reference to BlogCategory model
           required: true,
@@ -38,10 +39,10 @@ const blogCategorySchema = new mongoose.Schema({
       required: true,
     },
 
- }, {
+ },{
   collection:'blogPosts', // Table Name
   timestamps:true, // createdAt, updatedAt
- })
+ });
 
 const BlogPost = mongoose.model('BlogPost', blogPostSchema);
 
