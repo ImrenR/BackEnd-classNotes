@@ -15,7 +15,13 @@ const dbConnection = require("./src/dbConnection");
 dbConnection();
 //or
 // require('./src/dbConnection');
+// SessionCookie
+const session = require('cookie-session');
 
+app.use(session());
+
+
+/*---------------------------------------*/
 //Main Routes
 app.all("/", (req,res)=>{
   res.send("Welcome to the home page");
