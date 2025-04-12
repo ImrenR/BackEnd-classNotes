@@ -7,6 +7,8 @@ router.route('/blogs')
 .get(BlogCategory.list)
 .post(BlogCategory.create);
 
+router.route('/blogs/:Id')
+.get(BlogCategory.read)
 
 module.exports = router;
  

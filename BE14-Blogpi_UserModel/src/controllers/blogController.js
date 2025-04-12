@@ -25,6 +25,16 @@ module.exports = {
     });
   },
 
+  read: async(req,res)=>{
+   
+    const result = await BlogCategory.findById(req.params.id);
+   
+    res.status(200).send({
+      error:false,
+      result
+    });
+  },
+
 update: async(req,res)=>{
    
   const result = await BlogCategory
@@ -45,14 +55,6 @@ delete: async(req,res)=>{
   });
 },
 
-list: async(req,res)=>{
-   
-  const result = await BlogCategory
- 
-  res.status(200).send({
-    error:false,
-    result
-  });
-}
+
 
 }
