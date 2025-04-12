@@ -19,7 +19,8 @@ dbConnection();
 //Main Routes
 app.all("/", (req,res)=>{
   res.send("Welcome to the home page");
-})
+});
+
 //Blog Route
 app.use(require('./src/routes/blog.router'));
 app.use(require('./src/routes/user.router'));
