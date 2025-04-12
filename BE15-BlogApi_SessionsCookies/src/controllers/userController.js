@@ -46,11 +46,12 @@ module.exports = {
     if (email && password) {
       const user = await User.findOne({ email });
       if (user) {
-        
+
         if (user.password === passwordEncrypte(password)) {
           res.status(200).send({
             error: false,
-            message: "OK",
+            message: "Login successful",
+            user
           });
         } else {
           res.customErrorCode = 401;
