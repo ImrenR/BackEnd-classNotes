@@ -56,7 +56,9 @@ update: async(req,res)=>{
 
 delete: async(req,res)=>{
    
-  const result = await BlogCategory
+  const result = await BlogCategory.deleteOne({_id:req.params.id});
+  // const result = await BlogCategory.findByIdAndDelete(req.params.id)
+  // const result = await BlogCategory.findByIdAndRemove(req.params.id)
  
   res.status(200).send({
     error:false,
