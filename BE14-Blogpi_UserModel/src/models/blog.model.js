@@ -28,6 +28,13 @@ const blogCategorySchema = new mongoose.Schema({
           // unique: true, // convert relation to OnetoOne
   
         },
+        userId:{ 
+          type:mongoose.Schema.Types.ObjectId,
+           ref:'User', // reference to User model
+           required: true,
+           // unique: true, // convert relation to OnetoOne
+   
+         },
      title :{
        type: String,
        trim: true, // remove spaces from start and end
