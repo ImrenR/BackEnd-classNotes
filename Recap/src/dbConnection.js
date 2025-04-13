@@ -3,7 +3,12 @@
 const mongoose = require('mongoose');
 
 const dbConnection = ()=> {
-  mongoose.connect('mongodb://localhost:27017/database')
+
+  const uri = process.env.DB_CONNECTION
+
+  if(!uri) throw new Error ('DB_URI not found')
+
+    mongoose.connect(process.env.DB_CONNECTION)
   .then(()=> console.log('DB connected !'))
   .catch((err)=>console.log('DB not connected',err))
 }
