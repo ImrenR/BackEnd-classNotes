@@ -20,9 +20,9 @@
     // _id is default
        categoryId: { // default relation ManyToOne
         type : mongoose.Schema.Types.ObjectId,
-        ref : 'BlogCategory', // gave model name not collection name!
+        ref : 'BlogCategory', // gave model name not Schema/Table name!
         required: true,
-        unique: true
+        unique: true // to convert One to One
        },
        title:{
         type : String,
