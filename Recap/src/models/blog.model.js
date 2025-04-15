@@ -48,6 +48,6 @@ const BlogPostSchema= new mongoose.Schema(
   }
 );
 
-const BlogPosts = mongoose.mode("BlogPosts",BlogPostSchema) 
+const BlogPosts = mongoose.model("BlogPosts",BlogPostSchema) 
 
 module.exports = {BlogCategory, BlogPosts}

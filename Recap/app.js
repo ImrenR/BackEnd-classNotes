@@ -21,7 +21,7 @@ app.all('/',(req,res)=> res.send('welcome'));
 
 
 app.use(require('./src/middlewares/errorHandlers'));
-
+app.use(require('./src/routes/blog.router'));
 
 
 
