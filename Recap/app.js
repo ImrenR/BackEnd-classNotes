@@ -15,7 +15,7 @@ dbConnection();
 /* ROUTES */
 app.all('/',(req,res)=> res.send('welcome'));
 app.use(require('./src/routes/blog.router'));
-
+app.use(require('./src/routes/user.router'));
 
 
 
