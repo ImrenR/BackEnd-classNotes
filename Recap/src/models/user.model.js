@@ -34,7 +34,7 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-      set :(password)=> {return password}
+      set :(pass)=> {return passwordEncrypte(pass)}
     },
   },
   {
