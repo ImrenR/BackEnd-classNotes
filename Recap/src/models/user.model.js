@@ -35,6 +35,7 @@ const UserSchema = new mongoose.Schema(
       required: true,
       trim: true,
       set :(pass)=> {return passwordEncrypte(pass)}
+      // or set: passwordEncrypte
     },
   },
   {
