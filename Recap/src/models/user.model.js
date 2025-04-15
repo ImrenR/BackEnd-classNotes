@@ -1,5 +1,6 @@
 "use strict";
 const mongoose = require("mongoose");
+const crypto = require ('cyrpto');
 const UserSchema = new mongoose.Schema(
   {
     email: {
@@ -11,19 +12,18 @@ const UserSchema = new mongoose.Schema(
     firstName: {
       type: String,
       required: true,
-      unique: true,
       trim: true,
     },
     lastName: {
       type: String,
       required: true,
-      unique: true,
       trim: true,
     },
     password: {
       type: String,
       required: true,
       trim: true,
+      set :(password)=> {return password}
     },
   },
   {
@@ -32,4 +32,4 @@ const UserSchema = new mongoose.Schema(
   }
 );
 
-module.exports = ('UserTable',UserSchema );
+module.exports = mongoose.model('UserTable',UserSchema );

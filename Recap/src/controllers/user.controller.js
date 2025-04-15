@@ -1,10 +1,11 @@
 'use strict';
 
-const UserSchema = require('../models/user.model');
+
+const UserTable = require('../models/user.model');
 
 module.exports = {
   list: async (req,res)=> {
-   const result = await UserSchema.find();
+   const result = await UserTable.find();
 
     res.status(200).send({
       error : false,
@@ -12,7 +13,7 @@ module.exports = {
      });
   },
   create: async (req,res)=> {
-    const result = await UserSchema.create(req.params);
+    const result = await UserTable.create(req.params);
  
      res.status(200).send({
        error : false,
@@ -20,15 +21,15 @@ module.exports = {
       });
    },
   read : async (req,res)=> {
-    const result = await UserSchema.findById(req.params.id);
- 
+    const result = await UserTable.findById(req.params.id);
+ Table
      res.status(200).send({
        error : false,
        result
       });
    },
    update: async (req,res)=> {
-    const result = await UserSchema.findOneAndUpdate();
+    const result = await UserTable.findOneAndUpdate();
  
      res.status(200).send({
        error : false,
