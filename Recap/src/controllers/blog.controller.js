@@ -5,7 +5,7 @@ const {BlogCategory, BlogPosts} = require('../models/blog.model');
 module.exports = {
   list : async (req,res)=> {
 
-const result = await BlogCategory.find(req.body);
+const result = await BlogCategory.find( );
 
   res.status(200).send({
         error:false,
@@ -15,9 +15,9 @@ const result = await BlogCategory.find(req.body);
 
 create : async (req,res)=> {
 
-  const result = await BlogCategory
+  const result = await BlogCategory.create(req.body)
   
-    res.status(200).send({
+    res.status(201).send({
           error:false,
           result
     });
@@ -25,7 +25,7 @@ create : async (req,res)=> {
 
   read : async (req,res)=> {
 
-    const result = await BlogCategory
+    const result = await BlogCategory.findById(req.params.id);
     
       res.status(200).send({
             error:false,
@@ -35,21 +35,26 @@ create : async (req,res)=> {
 
     update : async (req,res)=> {
 
-      const result = await BlogCategory
-      
+      const result = await BlogCategory.updateOne({_id:req.params.id},req.body)
+      // findOneAndUpdate {new : true}  another method
         res.status(200).send({
               error:false,
-              result
+              result,
+              new: await BlogCategory.findById(req.params.id)
         });
       },
 
       delete: async (req,res)=> {
 
-        const result = await BlogCategory
+        const result = await BlogCategory.deleteOne({_id:req.params.id});
         
-          res.status(200).send({
-                error:false,
-                result
-          });
+        if(result.deletedCount){
+          res.send(204);
+          }else {
+            res.errorStatusCode = 404;
+            throw new Error('Data is not found');
+          }
+        }
+          
         },
 }
