@@ -78,8 +78,11 @@ delete: async (req,res)=>{
 module.exports.BlogPost = {
 
   list: async(req,res)=>{
-   
-    const result = await BlogPost.find().populate('categoryId'); // populate categoryId with name field from BlogCategory
+   // Filtering & Searching & Sorting & Pagination 
+   //* Filter: searches for absolute equality, Search; searches for partial equality
+
+
+    const result = await BlogPost.find({}).populate('categoryId'); // populate categoryId with name field from BlogCategory
    
     res.status(200).send({  
       error:false,
