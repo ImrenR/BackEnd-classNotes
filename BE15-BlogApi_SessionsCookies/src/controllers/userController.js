@@ -41,14 +41,15 @@ module.exports = {
   login: async (req,res)=> {
     // const email= req.body.email
     // const password= req.body.password
-    const{email,password} = req.body
+    const{email,password} = req.body;
     if(email && password){
       res.status(200).send({
            error: false,
-           msg:'Ok'
+           message:'Ok'
       })
     }else {
-      throw new Error('Email or password are required')
+      res.customErrorCode= 401;
+      throw new Error('Email or password are required');
     }
-  },
+  }
 }
