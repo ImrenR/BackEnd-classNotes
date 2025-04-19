@@ -52,7 +52,25 @@ module.exports = async (req, res, next) => {
   res.getModelListDetails = async(Model)=>{
     const data = await Model.find.countDocuments({ ...filter, ...search })
   console.log(data);
-  
+  let details = {
+    filter,
+    search,
+    limit,
+    sort,
+    skip,
+    page,
+    totolRecords: countDocuments,
+    pages:{
+      previous: (page> 1 ? page -1 : false),
+      current:page,
+      next: (page+1) > Math.ceil(count / limit) ? page + 1 : false, 
+      total : Math.ceil(count / limit)
+
+    }
+  };
+    // if(details.pages.next > details.pages.total) details.pages.next = false
+    if (details.totolRecords<= limit) details.page = false
+  return details 
   }
   next()
 };
