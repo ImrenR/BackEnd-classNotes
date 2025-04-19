@@ -75,4 +75,12 @@ module.exports = {
       throw new Error("Email or password are required");
     }
   },
+  logout: async (req,res)=>{
+    req.session = null;
+
+    res.status(200).send({
+      error:false,
+      message:"Logout is successful"
+    })
+  }
 };
