@@ -80,8 +80,8 @@ module.exports.BlogPost = {
   list: async(req,res)=>{
    // Filtering & Searching & Sorting & Pagination 
    //* Filter: searches for absolute equality, Search; searches for partial equality
-
-
+    
+    console.log(req.query);
     const result = await BlogPost.find({}).populate('categoryId'); // populate categoryId with name field from BlogCategory
    
     res.status(200).send({  
