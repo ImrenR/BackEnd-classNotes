@@ -45,6 +45,10 @@ const blogCategorySchema = new mongoose.Schema({
       trim: true, // remove spaces from start and end
       required: true,
     },
+    published:{
+      type: Boolean,
+      default:true
+    }
 
  },{
   collection:'blogPosts', // Table Name
