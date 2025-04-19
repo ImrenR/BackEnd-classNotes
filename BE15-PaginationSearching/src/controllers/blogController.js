@@ -75,12 +75,16 @@ module.exports.BlogPost = {
   list: async (req, res) => {
     // Filtering & Searching & Sorting & Pagination
     //* Filter: searches for absolute equality, Search; searches for partial equality
-    //FILTERING:
-    //* URL?filter[fieldName1]=value1&filter[fieldName2]=value2
-    const filter = req.query?.filter;
+    
+    //*FILTERING:
+    // URL?filter[fieldName1]=value1&filter[fieldName2]=value2
+    const filter = req.query?.filter || {};
     console.log(filter);
-
-    const result = await BlogPost.find({}).populate("categoryId"); // populate categoryId with name field from BlogCategory
+    
+    //* SEARCHING:
+    // URL?search[fieldName1]=value1&search[fieldName2]=value2
+    // {"<field>" : {"$regex" : "pattern", "$options": "<options"}}
+    const result = await BlogPost.find(filter); // populate categoryId with name field from BlogCategory
 
     res.status(200).send({
       error: false,
