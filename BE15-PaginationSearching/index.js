@@ -38,8 +38,15 @@ app.all("/", (req,res)=>{
 
 //Blog Route
 app.use(require('./src/routes/blog.router'));
-app.use(require('./src/routes/user.router'));
+// User Route
 app.use('/users', require('./src/routes/user.router'));
+// Not Found route
+app.all('*', (req,res)=>{
+  res.status(404).send({
+    error:true,
+    message:"The route you are looking for is not found!"
+  })
+});
 
 // Error Handler:
 app.use (require("./src/middlewares/errorHandler"));
