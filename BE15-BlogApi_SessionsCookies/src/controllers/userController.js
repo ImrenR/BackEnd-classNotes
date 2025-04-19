@@ -45,10 +45,22 @@ module.exports = {
     if (email && password) {
       const user = await User.findOne({ email });
       if (user) {
-        if (User.password === passwordEncrypte(password)) {
+        if (user.password === passwordEncrypte(password)) {
+
+          //Session
+          // req.session = {
+          //   email: User.email,
+          //   _id:User._id
+          // }
+          req.session._id = user._id
+          req.session.email= user.email
+          if(req.body?.rememberMe == true){
+            req.session.rememberMe=true,
+            req.sessionOptions.maxAge= 1000 * 60 * 60 * 24 * 3
+          }
           res.status(200).send({
             error: false,
-            message: "Loggin is succesful.",
+            message: "Login is succesful.",
           });
         } else {
           res.customErrorCode = 401;
