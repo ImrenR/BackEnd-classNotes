@@ -91,11 +91,20 @@ module.exports.BlogPost = {
     // search['title']= 'this is new value' // to change the value
     for (let key in search )search[key] = {$regex: search[key], $options: 'i'}
 
-      console.log(search);
+     //* SORTING:
+    // URL?sort[fieldName1]=value1&sort[fieldName2]=value2
+     const sort = req.query?.sort || {}
+
+    //* PAGINATION:
+    // URL?page=3&limit=15&skip=20
+
+    //*LIMIT:
+    let limit = parseInt(req.query?.limit)
+    limit = limit > 0 ? limit : parseInt(process.env.PAGE_SIZE) || 20
 
 
 
-    const result = await BlogPost.find({...filter,...search}); // populate categoryId with name field from BlogCategory
+    const result = await BlogPost.find({...filter,...search}).sort(sort); // populate categoryId with name field from BlogCategory
 
     res.status(200).send({
       error: false,
