@@ -15,9 +15,9 @@ module.exports = async (req, res, next) => {
     });
 
     // if (user) {
-    //   req, (user = user);
+    //   req.user = user;
     // } else {
-    //   req.session = null;
+    //   req.session = null; //remove all info
     // };
     user ? req.user = user: req.session = null;
   };
