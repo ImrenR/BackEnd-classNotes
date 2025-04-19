@@ -41,12 +41,18 @@ module.exports = async (req, res, next) => {
 
   console.log(limit, page, skip);
 
-  res.getModelList = async (Model) => {
-   return await { BlogPost }
-      .find({ ...filter, ...search })
+  res.getModelList = async (Model, populate=null) => {
+   return await 
+      Model.find({ ...filter, ...search })
       .sort(sort)
       .skip(skip)
       .limit(limit)
-      .populate(["userId", "categoryId"]); 
+      .populate(populate); 
   };
+  res.getModelListDetails = async(Model)=>{
+    const data = await Model.find.countDocuments({ ...filter, ...search })
+  console.log(data);
+  
+  }
+  next()
 };
