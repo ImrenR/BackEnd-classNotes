@@ -38,56 +38,17 @@ module.exports = {
       result,
     });
   },
-  login: async (req, res) => {
-    // const email = req.body.email;
-    // const password = req.body.password;
-    const { email, password } = req.body;
-
-    if (email && password) {
-      const user = await User.findOne({ email });
-      if (user) {
-
-        if (user.password === passwordEncrypte(password)) {
-          // Session
-          // req.session ={
-          //   email:user.email,
-          //   id:user._id,
-          // };
-          req.session._id= user._id;
-          req.session.email = user.email;
-          /* Session */
-
-          /* Cookie */
-          if(req.body?.rememberMe == true){
-            req.session.rememberMe = true,
-            req.sessionOptions.maxAge = 1000 * 60 * 60 * 24 * 3
-          }
-
-
-          res.status(200).send({
-            error: false,
-            message: "Login successful",
-            user
-          });
-        } else {
-          res.customErrorCode = 401;
-          throw new Error("Wrong email or password");
-        }
-      } else {
-        res.customErrorCode = 401;
-        throw new Error("Wrong email or password");
-      }
-    } else {
-      res.customErrorCode = 401;
-      throw new Error("Wrong email or password");
+  login: async (req,res)=> {
+    // const email= req.body.email
+    // const password= req.body.password
+    const{email,password} = req.body
+    if(email && password){
+      res.status(200).send({
+           error: false,
+           msg:'Ok'
+      })
+    }else {
+      throw new Error('Email or password are required')
     }
   },
-  
-  logout: async (req,res)=> {
-    req.session= null,
-    res.status(200).send({
-      error: false,
-      message: "Logout successful"
-    })
-  }
 }
