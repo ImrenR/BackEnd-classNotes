@@ -3,7 +3,9 @@
 // Authentication middleware:
 
 const User = require("../models/user.model");
+
 module.exports = async (req, res, next) => {
+  
   req.user = null;
 
   if (req.session?._id) {
