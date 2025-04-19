@@ -38,18 +38,29 @@ module.exports = {
       result,
     });
   },
-  login: async (req,res)=> {
+  login: async (req, res) => {
     // const email= req.body.email
     // const password= req.body.password
-    const{email,password} = req.body;
-    if(email && password){
-      res.status(200).send({
-           error: false,
-           message:'Ok'
-      })
-    }else {
-      res.customErrorCode= 401;
-      throw new Error('Email or password are required');
+    const { email, password } = req.body;
+    if (email && password) {
+      const user = await User.findOne({ email });
+      if (user) {
+        if (User.password === password) {
+          res.status(200).send({
+            error: false,
+            message: "Ok",
+          });
+        } else {
+          res.customErrorCode = 401;
+          throw new Error("Wrong email or password");
+        }
+      } else {
+        res.customErrorCode = 401;
+        throw new Error("Wrong email or password");
+      }
+    } else {
+      res.customErrorCode = 401;
+      throw new Error("Email or password are required");
     }
-  }
-}
+  },
+};
