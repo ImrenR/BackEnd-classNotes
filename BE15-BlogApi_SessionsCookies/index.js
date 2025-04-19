@@ -31,9 +31,7 @@ app.all("/", (req,res)=>{
   res.send({
    message: "Welcome to the home page",
    session: req.session,
-
   });
-
 });
 
 //Blog Route
