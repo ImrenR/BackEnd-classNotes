@@ -79,12 +79,23 @@ module.exports.BlogPost = {
     //*FILTERING:
     // URL?filter[fieldName1]=value1&filter[fieldName2]=value2
     const filter = req.query?.filter || {};
-    console.log(filter);
+   
     
     //* SEARCHING:
     // URL?search[fieldName1]=value1&search[fieldName2]=value2
     // {"<field>" : {"$regex" : "pattern", "$options": "<options"}}
-    const result = await BlogPost.find(filter); // populate categoryId with name field from BlogCategory
+    const search = req.query?.search || {};
+  
+    // console.log(search.title);
+    // console.log(search['title']);
+    // search['title']= 'this is new value' // to change the value
+    for (let key in search )search[key] = {$regex: search[key], $options: 'i'}
+
+      console.log(search);
+
+
+
+    const result = await BlogPost.find({...filter,...search}); // populate categoryId with name field from BlogCategory
 
     res.status(200).send({
       error: false,
