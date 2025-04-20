@@ -1,0 +1,14 @@
+# -- server --
+PORT = 8000
+
+# -- db --
+MONGOURI = mongodb://localhost:27017/personnelAPI
+
+# -- passwordEncrypt --
+LOOP_COUNT = 10000
+CHAR_COUNT = 32
+ENC_TYPE = sha512
+
+# -- other --
+SECRET_KEY = 728ad7dfd06e8c38a13ee11717b834eaad0fdfacc9e8a6c209359347cbf3d4467dffea4f571421a69c501491aa43f1909e6dc60bba1ac90355d345f168bc576a
+PAGE_SIZE = 20
