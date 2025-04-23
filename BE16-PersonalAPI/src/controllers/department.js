@@ -1,15 +1,15 @@
 'use strict'; 
 
-const Deparmant = require('../models/department.js')
+const Department = require('../models/department.js')
 
 module.exports={
   list: async (req,res)=>{
    
-  const result = await getModelList(Deparmant)
+  const result = await res.getModelList(Department)
 
     res.status(200).send({
       error:false,
-      details: await getModelListDetails (Department),
+      details: await res.getModelListDetails (Department),
       result
     })
   },

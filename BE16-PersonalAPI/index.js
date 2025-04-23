@@ -24,8 +24,8 @@
         secret: process.env.SECRET_KEY,
      }))
 
-     require('./src/configs/dbConnection')
-
+    require('./src/configs/dbConnection');
+    
      //Query Handler;
      app.use(require('./src/middlewares/queryHandler'))
 
