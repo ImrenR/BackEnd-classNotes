@@ -13,4 +13,4 @@ const dbConnection = () => {
   .catch((err)=>console.log("Database connection failed", err));
 }
 
-module.exports = dbConnection;
+module.exports = mongoose;

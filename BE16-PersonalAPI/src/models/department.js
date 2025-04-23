@@ -1,5 +1,6 @@
 'use strict';
 
+
 const {mongoose} = require('../configs/dbConnection');
 
 
@@ -15,17 +16,6 @@ const DepartmentSchema = new mongoose.Schema ({
   timestamps: true
 })
 
-module.exports=mongoose.model("Deparmant", DepartmentSchema)
+module.exports=mongoose.model("Department", DepartmentSchema)
 
-const PersonnelSchema = new mongoose.Schema ({
-   Id: {
-  departmentId: mongoose.Schema.Types.ObjectId,
-  type: String,
-  unique: true,
-  trim: true
-   },
-},{
-  collection: ' personnel',
-  timestamps: true
-})
 

@@ -15,7 +15,7 @@
 
     // Middleware; 
     app.use(express.json())
-    require('express-async-errors')
+    require('express-async-errors');
 
     // Session Cookies
     const session = require('cookie-session');
@@ -35,9 +35,9 @@
             message:'Welcome to Personnel API'
         })
      })
-
+      app.use(require('./src/routes/department'))
      // Error Handler
-   app.use(require('./src/middlewares/errorHandler'))
+   app.use('/departments',require('./src/middlewares/errorHandler'))
 
    
      //Run server
