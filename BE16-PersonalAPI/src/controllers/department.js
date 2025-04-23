@@ -33,7 +33,9 @@ const result = await Department.create(req.body)
   },
   update: async (req,res)=>{
 
-    const result= await Department.updateOne({_id:req.params.id},req.body)
+    const result= await Department.updateOne({_id:req.params.id},req.body, {
+      runValidators:true, // runs validation method
+      new:true})
     res.status(202).send({
       error:false,
       result
