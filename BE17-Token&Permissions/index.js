@@ -48,6 +48,10 @@ app.use("/personnels", require("./src/routes/personnel"))
 //Token route
 app.use('/tokens',require("./src/routes/token"))
 
+// Auth Route
+
+app.use('/auth', require('./src/controllers/auth'))
+
 //Not Found Page
 app.use('*', (req,res)=>{
 
