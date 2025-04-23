@@ -15,33 +15,36 @@ module.exports={
   },
   create: async (req,res)=>{
 
+const result = await Department.create(req.body)
 
     res.status(201).send({
       error:false,
       result
     })
   },
+
   read: async (req,res)=>{
+ const result= await Department.findOne({_id:req.params.id})
 
-
-    res.status(200).send({
+    res.status(201).send({
       error:false,
       result
     })
   },
   update: async (req,res)=>{
 
-
-    res.status(200).send({
+    const result= await Department.updateOne({_id:req.params.id},req.body)
+    res.status(202).send({
       error:false,
       result
     })
   },
   delete: async (req,res)=>{
-
-
-    res.status(404).send({
+    const result= await Department.deleteOne({_id:req.params.id})
+// 204 no content 404 not found 
+    res.status(result.deletedCount ? 2044 : 404).send({
       error:false,
+      deletedCount: true,
       result
     })
   }
