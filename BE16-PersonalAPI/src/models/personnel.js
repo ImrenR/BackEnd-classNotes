@@ -6,7 +6,7 @@ const passwordEncrypte = require("../helpers/passwordEncrypte");
 const PersonnelSchema = new mongoose.Schema(
   {
     departmentId: {
-      type: mongoose.Types.Schema.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Department",
       required: true,
     },
@@ -88,4 +88,4 @@ const PersonnelSchema = new mongoose.Schema(
   }
 );
 
-modules.exports = mongoose.model('Personnel', PersonnelSchema)
+module.exports = mongoose.model('Personnel', PersonnelSchema)

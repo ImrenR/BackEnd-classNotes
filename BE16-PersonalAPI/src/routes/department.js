@@ -3,11 +3,11 @@
 const router = require('express').Router();
 const department = require('../controllers/department');
 //department
-router.route('/departments')
+router.route('/')
 .get(department.list)
 .post(department.create);
 
-router.route('/departments/:id')
+router.route('/:id')
 .get(department.read)
 .put(department.update)
 .delete(department.delete);
