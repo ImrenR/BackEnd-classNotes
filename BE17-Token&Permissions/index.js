@@ -44,6 +44,10 @@ app.use("/departments", require("./src/routes/department"))
 //Personnel route
 app.use("/personnels", require("./src/routes/personnel"))
 
+
+//Token route
+app.use('/tokens',require("./src/routes/token"))
+
 //Not Found Page
 app.use('*', (req,res)=>{
 

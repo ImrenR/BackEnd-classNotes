@@ -44,6 +44,7 @@ app.use("/departments", require("./src/routes/department"))
 //Personnel route
 app.use("/personnels", require("./src/routes/personnel"))
 
+
 //Not Found Page
 app.use('*', (req,res)=>{
 
