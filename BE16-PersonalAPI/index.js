@@ -44,8 +44,19 @@ app.use("/departments", require("./src/routes/department"))
 //Personnel route
 app.use("/personnels", require("./src/routes/personnel"))
 
-// Error Handler
+//Not Found Page
+app.use('*', (req,res)=>{
+
+  res.status(404).send({
+    error:true,
+    message: 'This page not found'
+  })
+})
+
+
+//Error Handler
 app.use("/departments", require("./src/middlewares/errorHandler"))
+
 
 //Run server
 app.listen(PORT, console.log(`Running at ${PORT}`));
