@@ -1,21 +1,21 @@
 'use strict'; 
 
-const Personnel = require('../models/personnel')
+const Token = require('../models/token')
 
 module.exports={
   list: async (req,res)=>{
    
-  const result = await res.getModelList(Personnel)
+  const result = await res.getModelList(Token)
 
     res.status(200).send({
       error:false,
-      details: await res.getModelListDetails (Personnel),
+      details: await res.getModelListDetails (Token),
       result
     })
   },
   create: async (req,res)=>{
 
-const result = await Personnel.create(req.body)
+const result = await Token.create(req.body)
 
     res.status(201).send({
       error:false,
@@ -24,7 +24,7 @@ const result = await Personnel.create(req.body)
   },
 
   read: async (req,res)=>{
- const result= await Personnel.findOne({_id:req.params.id})
+ const result= await Token.findOne({_id:req.params.id})
 
     res.status(201).send({
       error:false,
@@ -33,7 +33,7 @@ const result = await Personnel.create(req.body)
   },
   update: async (req,res)=>{
 
-    const result= await Personnel.updateOne({_id:req.params.id},req.body, {
+    const result= await Token.updateOne({_id:req.params.id},req.body, {
       runValidators:true, // runs validation method
       new:true})
     res.status(202).send({
@@ -42,7 +42,7 @@ const result = await Personnel.create(req.body)
     })
   },
   delete: async (req,res)=>{
-    const result= await Personnel.deleteOne({_id:req.params.id})
+    const result= await Token.deleteOne({_id:req.params.id})
 // 204 no content 404 not found 
     res.status(result.deletedCount ? 2044 : 404).send({
       error:false,
