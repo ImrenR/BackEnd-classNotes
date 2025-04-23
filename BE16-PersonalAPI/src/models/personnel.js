@@ -37,8 +37,8 @@ const PersonnelSchema = new mongoose.Schema(
       required: true,
       trim: true,
       unique: true,
-      minlength: 11,
-      math: [/^\d{11}$/, "Phone nmuber is not valid"],
+      minlength: 9,
+      math: [/^\d{9}$/, "Phone nuber is not valid"]
     },
     email: {
       type: String,

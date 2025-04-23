@@ -49,3 +49,7 @@ app.use("/departments", require("./src/middlewares/errorHandler"))
 
 //Run server
 app.listen(PORT, console.log(`Running at ${PORT}`));
+
+/*------------------------------------------------------------*/
+//! Syncronization : Run it only once.
+// require('./src/helpers/sync')()

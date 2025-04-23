@@ -1,47 +1,52 @@
-"use strict";
+"use strict"
 /* -------------------------------------------------------
-    EXPRESSJS - BLOG Project with Mongoose
+    EXPRESS - Personnel API
 ------------------------------------------------------- */
+// SYCHRONIZATION:
 
-const User = require('./src/models/user.model')
-const { BlogCategory, BlogPost } = require('./src/models/blog.model')
+module.exports = async function() {
 
-/* ------------------------------------------------------- */
+    // return null;
 
-
-module.exports = async () => {
-
-    /* Exampla Data */
-    // Deleted All Records:
-    await User.deleteMany().then(() => console.log(' - User Deleted All'))
-    await BlogCategory.deleteMany().then(() => console.log(' - BlogCategory Deleted All'))
-    await BlogPost.deleteMany().then(() => console.log(' - BlogPost Deleted All'))
-
-    // Example User:
-    const user = await User.create({
-        email: "test@test.com",
-        password: "12345678",
-        firstName: "Test",
-        lastName: "Test"
-    })
-    // Example Category:
-    const blogCategory = await BlogCategory.create({
-        name: 'Test Category'
-    })
-    // Example Posts:
-    for (let key in [...Array(200)]) {
-        await BlogPost.create({
-            userId: user._id,
-            categoryId: blogCategory._id,
-            title: `test ${key} title`,
-            content: `test ${key} content`,
-            published: Boolean(key % 2)
+    /* REMOVE DATABASE */
+    const mongoose = require('mongoose')
+    await mongoose.connection.dropDatabase()
+    console.log('- Database and all data DELETED!')
+    /* REMOVE DATABASE */
+    
+    /* Department & Personnel */
+    const Department = require('../models/department')
+    const Personnel = require('../models/personnel')
+    const departments = [
+        "FullStack Department",
+        "DevOps Department",
+        "CyberSec Department",
+    ]
+    departments.forEach(value => {
+        // Department.create:
+        Department.create({ name: value }).then((department) => {
+            console.log('- Department Added.')
+            // Personnel.create:
+            for (let i in [...Array(10)]) {
+                Personnel.create({
+                    departmentId: department._id,
+                    username: "test" + (value[0] + i),
+                    password: "1234",
+                    firstName: "firstName",
+                    lastName: "lastName",
+                    phone: "123456789",
+                    email: "test" + (value[0] + i) + "@site.com",
+                    title: "title",
+                    salary: 2500,
+                    description: "description",
+                    isActive: true,
+                    isAdmin: false,
+                    isLead: false,
+                    startedAt: "2023-10-15 13:14:15"
+                })
+            }
+            console.log('- Personnels Added.')
         })
-    }
-
-    // Finish:
-    console.log('* Syncronized.')
-
+    })
+    /* Department & Personnel */
 }
-
-/* ------------------------------------------------------- */
