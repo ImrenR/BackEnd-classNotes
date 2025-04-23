@@ -73,32 +73,12 @@ module.exports.BlogCategory = {
 // BlogPost Controller
 module.exports.BlogPost = {
   list: async (req, res) => {
-    // Filtering & Searching & Sorting & Pagination
-    //* Filter: searches for absolute equality, Search; searches for partial equality
-    
-    //*FILTERING:
-    // URL?filter[fieldName1]=value1&filter[fieldName2]=value2
-    const filter = req.query?.filter || {};
-   
-    
-    //* SEARCHING:
-    // URL?search[fieldName1]=value1&search[fieldName2]=value2
-    // {"<field>" : {"$regex" : "pattern", "$options": "<options"}}
-    const search = req.query?.search || {};
-  
-    // console.log(search.title);
-    // console.log(search['title']);
-    // search['title']= 'this is new value' // to change the value
-    for (let key in search )search[key] = {$regex: search[key], $options: 'i'}
 
-      console.log(search);
-
-
-
-    const result = await BlogPost.find({...filter,...search}); // populate categoryId with name field from BlogCategory
+   const result = await res.getModelList(BlogPost, ['categoryId','userId'])
 
     res.status(200).send({
       error: false,
+      details: await res.getModelListDetails(BlogPost),
       result,
     });
   },
