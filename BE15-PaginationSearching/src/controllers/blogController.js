@@ -73,8 +73,15 @@ module.exports.BlogCategory = {
 // BlogPost Controller
 module.exports.BlogPost = {
   list: async (req, res) => {
+//*  Filtering :
 
-   const result = await res.getModelList(BlogPost, ['categoryId','userId'])
+const filter = req.query?.filter || {};
+
+//* SEARCHING :
+const search = req.query?.search || "";
+
+
+   const result = await BlogPost.find(filter);
 
     res.status(200).send({
       error: false,
