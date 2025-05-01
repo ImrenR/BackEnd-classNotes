@@ -80,8 +80,9 @@ const filter = req.query?.filter || {};
 //* SEARCHING :
 const search = req.query?.search || "";
 
+for ( let key in search) search[key] ={$regex: search[key], $options: 'i'}
 
-   const result = await BlogPost.find(filter);
+   const result = await BlogPost.find(...filter, ...search);
 
     res.status(200).send({
       error: false,
