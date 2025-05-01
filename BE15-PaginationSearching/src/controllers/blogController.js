@@ -99,7 +99,9 @@ module.exports.BlogPost = {
 
 // const result = await BlogPost.find(...filter, ...search).sort(sort).skip(skip).limit(limit);
 
-    res.status(200).send({
+ const result = await res.getModelList(BlogPost, ['categoryId', 'userId']);
+    
+ res.status(200).send({
       error: false,
       details: await res.getModelListDetails(BlogPost),
       result,
