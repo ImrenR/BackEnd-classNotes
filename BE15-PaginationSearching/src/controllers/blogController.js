@@ -82,7 +82,22 @@ const search = req.query?.search || "";
 
 for ( let key in search) search[key] ={$regex: search[key], $options: 'i'}
 
-   const result = await BlogPost.find(...filter, ...search);
+//* SORTING :
+const sort = req.query?.sort || {};  
+
+//* LIMITING :
+const limit = parseInt(req.query?.limit)
+limit = limit > 0 ? limit : parseInt(process.env.PAGE_SIZE) || 20
+   
+//*PAGE :
+let page = parseInt(req.query?.page)
+page = page > 0 ? page : 1;
+
+//* SKIP */
+let skip = parseInt
+skip = skip > 0 ? skip :(page - 1) * limit;
+
+const result = await BlogPost.find(...filter, ...search).sort(sort);
 
     res.status(200).send({
       error: false,
