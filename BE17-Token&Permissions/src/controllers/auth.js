@@ -57,5 +57,14 @@ module.exports = {
 
 
     },
+
     logout : async(req,res) => {
-}} 
+
+      const token = req.user ? await Token.deleteOne({userId: req.user._id}) : null ;
+
+        res.status(200).send({
+            error:false,
+            message:token?.deletedCount? 'User token delted. Logout Successfully' : 'User token not found'
+        });
+ },
+}
