@@ -17,6 +17,8 @@ const PORT = process.env.PORT || 8000;
 app.use(express.json());
 require("express-async-errors");
 
+
+
 // Session Cookies
 const session = require("cookie-session");
 
@@ -31,7 +33,10 @@ require("./src/configs/dbConnection");
 
 //Query Handler;
 app.use(require("./src/middlewares/queryHandler"));
-
+//DB Connection
+require("./src/configs/dbConnection");
+//Authantication
+app.use(require("./src/middlewares/authantication"));
 // Routes:
 app.all("/", (req, res) => {
   res.send({
