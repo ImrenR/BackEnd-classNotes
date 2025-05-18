@@ -1,17 +1,19 @@
 'use strict';
 
 const router = require('express').Router();
-const department = require('../controllers/department');
+const department = require('../controllers/department')
+const {islogin, isAdmin, isAdminorLead} = require ('../middlewares/permissions');
 //department
 router.route('/')
-.get(department.list)
-.post(department.create);
+.get(islogin,department.list)
+.post(isAdmin,department.create);
 
 router.route('/:id')
-.get(department.read)
-.put(department.update)
-.delete(department.delete);
+.get(isLogin,department.read)
+.put(isAdminorLead,department.update)
+.delete(isAdminorLead,department.delete);
 
+router.get('/:id/personnels', department.personnels)
 
 module.exports = router
  

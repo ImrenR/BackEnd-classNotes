@@ -73,10 +73,35 @@ module.exports.BlogCategory = {
 // BlogPost Controller
 module.exports.BlogPost = {
   list: async (req, res) => {
+// //*  Filtering :
 
-   const result = await res.getModelList(BlogPost, ['categoryId','userId'])
+// const filter = req.query?.filter || {};
 
-    res.status(200).send({
+// //* SEARCHING :
+// const search = req.query?.search || "";
+
+// for ( let key in search) search[key] ={$regex: search[key], $options: 'i'}
+
+// //* SORTING :
+// const sort = req.query?.sort || {};  
+
+// //* LIMITING :
+// const limit = parseInt(req.query?.limit)
+// limit = limit > 0 ? limit : parseInt(process.env.PAGE_SIZE) || 20
+   
+// //*PAGE :
+// let page = parseInt(req.query?.page)
+// page = page > 0 ? page : 1;
+
+// //* SKIP */
+// let skip = parseInt
+// skip = skip > 0 ? skip :(page - 1) * limit ;
+
+// const result = await BlogPost.find(...filter, ...search).sort(sort).skip(skip).limit(limit);
+
+ const result = await res.getModelList(BlogPost, ['categoryId', 'userId']);
+    
+ res.status(200).send({
       error: false,
       details: await res.getModelListDetails(BlogPost),
       result,

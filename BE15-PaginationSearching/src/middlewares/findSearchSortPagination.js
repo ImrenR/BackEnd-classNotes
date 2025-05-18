@@ -41,36 +41,36 @@ module.exports = async (req, res, next) => {
 
   console.log(limit, page, skip);
 
-  res.getModelList = async (Model, populate=null) => {
-   return await 
-      Model.find({ ...filter, ...search })
+  res.getModelList = async (Model, populate = null) => {
+    return await Model.find({ ...filter, ...search })
       .sort(sort)
       .skip(skip)
       .limit(limit)
-      .populate(populate); 
+      .populate(populate);
   };
-  res.getModelListDetails = async(Model)=>{
-    const data = await Model.find.countDocuments({ ...filter, ...search })
-  console.log(data);
-  let details = {
-    filter,
-    search,
-    limit,
-    sort,
-    skip,
-    page,
-    totolRecords: countDocuments,
-    pages:{
-      previous: (page> 1 ? page -1 : false),
-      current:page,
-      next: (page+1) > Math.ceil(count / limit) ? page + 1 : false, 
-      total : Math.ceil(count / limit)
 
-    }
-  };
+  res.getModelListDetails = async (Model) => {
+
+    const data = await Model.find.countDocuments({ ...filter, ...search });
+  
+    let details = {
+      filter,
+      search,
+      limit,
+      sort,
+      skip,
+      page,
+      totalRecords: countDocuments,
+      pages: {
+        previous: (page > 1 ? page - 1 : false),
+        current: page,
+        next: (page + 1 )> Math.ceil(count / limit) ? page + 1 : false,
+        total: Math.ceil(count / limit),
+      },
+    };
     // if(details.pages.next > details.pages.total) details.pages.next = false
-    if (details.totolRecords<= limit) details.page = false
-  return details 
-  }
-  next()
+    if (details.totalRecords <= limit) details.page = false;
+    return details;
+  };
+  next();
 };
