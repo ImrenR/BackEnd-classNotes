@@ -47,11 +47,21 @@ app.use(require('./src/middlewares/logger'))
 //  npm swagger-autogen JSON creator
 //npm i swagger-ui-express
 // npm i redoc-express
-
+//JSON
+app.use('/documents/json',(req,res)=> {
+  res.sendFile('/src/configs/swagger.json', {root: '.'})
+})
 // SWAGGER 
 const swaggerUi = require('swagger-ui-express') //it s a function
 const swaggerJson = require('./src/configs/swagger.json');
 app.use('/documents/swagger', swaggerUi.serve, swaggerUi.setup(swaggerJson,{swaggerOptions:{persistAuthorization:true}}))
+
+//REDOC
+const redoc = require('redoc-express');
+app.use('/documents/redoc', redoc({specUrl: '/documents/json'}))
+
+
+
 
 // Routes:
 app.all("/", (req, res) => { 
