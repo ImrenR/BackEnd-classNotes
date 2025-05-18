@@ -41,7 +41,7 @@ module.exports = {
   const isLead = req.body?.isLead || false
 
    if(isLead){
-     const {departmentId} = await Personnel.findOne({_id:req.params.id}, {departmentId: 1}) {}
+     const {departmentId} = await Personnel.findOne({_id:req.params.id}, {departmentId: 1})
       
      await Personnel.updateMany({departmentId, isLead:true},{isLead:false})
     }

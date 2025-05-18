@@ -37,6 +37,10 @@ app.use(require("./src/middlewares/queryHandler"));
 require("./src/configs/dbConnection");
 //Authantication
 app.use(require("./src/middlewares/authantication"));
+// Logger 
+//npm i morgan
+const morgan= require('morgan');
+app.use(morgan('tiny'))
 // Routes:
 app.all("/", (req, res) => {
   res.send({
@@ -55,7 +59,7 @@ app.use('/tokens',require("./src/routes/token"))
 
 // Auth Route
 
-app.use('/auth', require('./src/controllers/auth'))
+app.use('/auth', require('./src/routes/auth'))
 
 //Not Found Page
 app.use('*', (req,res)=>{

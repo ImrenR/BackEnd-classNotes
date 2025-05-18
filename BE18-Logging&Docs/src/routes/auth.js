@@ -14,4 +14,4 @@ router.post('/login', login)
 router.all('/logout', logout)
 
 
-module.exports = router
+module.exports = router;

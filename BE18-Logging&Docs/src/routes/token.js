@@ -1,7 +1,7 @@
 'use strict'
 
-const router = require('express').Router()
-const {list, create, update, deletee, read} = require('../controllers/tokens');
+const router = require('express').Router();
+const {list, create, update, deletee, read} = require('../controllers/token');
 const {isAdmin, isLogin} = require('../middlewares/permissions');
 
 
@@ -9,12 +9,12 @@ const {isAdmin, isLogin} = require('../middlewares/permissions');
 //tokens
 router.use(isAdmin);
 router.route('/')
-.get(isLogin,department.list).post(isAdmin,department.create);
+.get(isLogin,list).post(isAdmin,create);
 
 router.route('/:id')
-.get(isLogin,department.read)
-.put(isAdmin,department.update)
-.delete(isAdmin,department.deletee);
+.get(isLogin,read)
+.put(isAdmin,update)
+.delete(isAdmin,deletee);
 
 
 

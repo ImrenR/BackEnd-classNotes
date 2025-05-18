@@ -1,7 +1,7 @@
 "use strict";
 
 const { mongoose } = require("../configs/dbConnection");
-const passwordEncrypte = require("../helpers/passwordEncrypte");
+const passwordEncrypte = require("../helpers/passwordEncrypt");
 
 const PersonnelSchema = new mongoose.Schema(
   {

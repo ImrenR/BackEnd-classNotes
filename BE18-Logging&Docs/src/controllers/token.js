@@ -41,7 +41,7 @@ const result = await Token.create(req.body)
       result
     })
   },
-  delete: async (req,res)=>{
+  deletee: async (req,res)=>{
     const result= await Token.deleteOne({_id:req.params.id})
 // 204 no content 404 not found 
     res.status(result.deletedCount ? 2044 : 404).send({

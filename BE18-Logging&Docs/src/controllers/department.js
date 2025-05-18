@@ -44,10 +44,10 @@ module.exports = {
       result,
     });
   },
-  delete: async (req, res) => {
+  deleteDepartment: async (req, res) => {
     const result = await Department.deleteOne({ _id: req.params.id });
     // 204 no content 404 not found
-    res.status(result.deletedCount ? 2044 : 404).send({
+    res.status(result.deletedCount ? 204 : 404).send({
       error: false,
       deletedCount: true,
       result,
