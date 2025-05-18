@@ -1,8 +1,11 @@
-'use strict';
+'use strict'
 
-const router = require('express').Router();
+const router = require('express').Router()
 const {list, create, update, deletee, read} = require('../controllers/tokens');
 const {isAdmin, isLogin} = require('../middlewares/permissions');
+
+
+
 //tokens
 router.use(isAdmin);
 router.route('/')

@@ -3,7 +3,7 @@ const Token = require('../models/token')
 module.exports = async (req, res, next) => {
   req.user = null
   const auth = req.headers?.authorization || null;
-  const tokenKey = auth?.split(" ") || null;
+  const tokenKey = auth? auth.split(" ") : null
 
   if(tokenKey && tokenKey[0] == 'Token'){
     
