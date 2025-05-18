@@ -33,16 +33,17 @@ require("./src/configs/dbConnection");
 
 //Query Handler;
 app.use(require("./src/middlewares/queryHandler"));
+
 //DB Connection
 require("./src/configs/dbConnection");
+
 //Authantication
 app.use(require("./src/middlewares/authantication"));
+
 // Logger 
-//npm i morgan
-const morgan= require('morgan');
-app.use(morgan('tiny'))
+app.use(require('./src/middlewares/logger'))
 // Routes:
-app.all("/", (req, res) => {
+app.all("/", (req, res) => { 
   res.send({
     message: "Welcome to Personnel API",
   });
