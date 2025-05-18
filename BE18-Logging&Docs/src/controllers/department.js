@@ -5,6 +5,13 @@ const Personnel = require("../models/personnel.js");
 
 module.exports = {
   list: async (req, res) => {
+    /*  #swagger.tags = ['Authentication']
+        #swagger.summary = 'List Departments'
+        #swagger.description =
+        You can send query with endpoint for search[], sort[], page and limit.
+         }
+    
+*/
     const result = await res.getModelList(Department);
 
     res.status(200).send({
@@ -14,6 +21,8 @@ module.exports = {
     });
   },
   create: async (req, res) => {
+
+    
     const result = await Department.create(req.body);
 
     res.status(201).send({

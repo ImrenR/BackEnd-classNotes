@@ -11,7 +11,7 @@ const { login, logout } = require('../controllers/auth')
 
 router.post('/login', login)
 
-router.all('/logout', logout)
+router.post('/logout', logout)
 
 
 module.exports = router;
