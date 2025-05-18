@@ -2,9 +2,13 @@
   "name": "be18-logging",
   "version": "1.0.0",
   "main": "index.js",
+  "contact": {
+    "name": "imren",
+    "email": "imrenrahbay@gmail.com"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start" :"node index.js"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +20,9 @@
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
     "mongoose": "^8.13.2",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "redoc-express": "^2.1.0",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.1"
   }
 }

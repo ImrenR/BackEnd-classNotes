@@ -42,6 +42,17 @@ app.use(require("./src/middlewares/authantication"));
 
 // Logger 
 app.use(require('./src/middlewares/logger'))
+
+// Documentation
+//  npm swagger-autogen JSON creator
+//npm i swagger-ui-express
+// npm i redoc-express
+
+// SWAGGER 
+const swaggerUi = require('swagger-ui-express') //it s a function
+const swaggerJson = require('./src/configs/swagger.json');
+app.use('/documents/swagger', swaggerUi.serve, swaggerUi.setup(swaggerJson,{swaggerOptions:{persistAuthorization:true}}))
+
 // Routes:
 app.all("/", (req, res) => { 
   res.send({
