@@ -42,8 +42,8 @@ module.exports = async (req, res, next) => {
 
 
   
-  res.getModelList = async function (Model, populate= null){
-   return await  Model.find({ ...filter, ...search })
+  res.getModelList = async function (Model,customFilter = {}, populate= null){
+   return await  Model.find({ ...filter, ...search, ...customFilter })
       .sort(sort)
       .skip(skip)
       .limit(limit)
@@ -51,9 +51,9 @@ module.exports = async (req, res, next) => {
   };
 
 
-  res.getModelListDetails = async (Model) => {
+  res.getModelListDetails = async (Model,customFilter = {}) => {
 
-  const data = await Model.find({ ...filter, ...search })
+  const data = await Model.find({ ...filter, ...search, ...customFilter})
   // console.log(data);
   const details = {
     filter,
