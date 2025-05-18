@@ -4,7 +4,9 @@ const Token = require('../models/token')
 
 module.exports={
   list: async (req,res)=>{
-   
+     /*  #swagger.ignore = true
+    
+*/
   const result = await res.getModelList(Token)
 
     res.status(200).send({
@@ -14,7 +16,9 @@ module.exports={
     })
   },
   create: async (req,res)=>{
-
+     /*  #swagger.ignore = true
+    
+*/
 const result = await Token.create(req.body)
 
     res.status(201).send({
@@ -24,6 +28,9 @@ const result = await Token.create(req.body)
   },
 
   read: async (req,res)=>{
+         /*  #swagger.ignore = true
+    
+*/
  const result= await Token.findOne({_id:req.params.id})
 
     res.status(201).send({
@@ -32,7 +39,9 @@ const result = await Token.create(req.body)
     })
   },
   update: async (req,res)=>{
-
+     /*  #swagger.ignore = true
+    
+*/
     const result= await Token.updateOne({_id:req.params.id},req.body, {
       runValidators:true, // runs validation method
       new:true})
@@ -41,7 +50,10 @@ const result = await Token.create(req.body)
       result
     })
   },
-  deletee: async (req,res)=>{
+  deletee: async (req,res)=>{     
+    /*  #swagger.ignore = true
+    
+*/
     const result= await Token.deleteOne({_id:req.params.id})
 // 204 no content 404 not found 
     res.status(result.deletedCount ? 2044 : 404).send({
